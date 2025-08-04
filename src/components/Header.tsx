@@ -1,8 +1,21 @@
 import { Button } from "@/components/ui/button";
-import { Heart, User, Menu } from "lucide-react";
+import { Heart, User, Menu, LogOut } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 import appIcon from "@/assets/app-icon.jpg";
 
 const Header = () => {
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleAuthAction = () => {
+    if (user) {
+      signOut();
+    } else {
+      navigate("/auth");
+    }
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
       <div className="container flex h-16 items-center justify-between">
@@ -27,10 +40,22 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Button variant="ghost" size="sm" className="hidden md:flex">
-            <User className="h-4 w-4" />
-            Sign In
-          </Button>
+          {user ? (
+            <>
+              <span className="hidden md:inline text-sm text-muted-foreground">
+                {user.email}
+              </span>
+              <Button variant="ghost" size="sm" onClick={handleAuthAction} className="hidden md:flex">
+                <LogOut className="h-4 w-4" />
+                Sign Out
+              </Button>
+            </>
+          ) : (
+            <Button variant="ghost" size="sm" onClick={handleAuthAction} className="hidden md:flex">
+              <User className="h-4 w-4" />
+              Sign In
+            </Button>
+          )}
           <Button variant="cta" size="sm">
             Get Started
           </Button>
