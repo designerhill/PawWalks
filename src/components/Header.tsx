@@ -25,21 +25,24 @@ const Header = () => {
         </div>
         
         <nav className="hidden md:flex items-center gap-6">
-          <a href="#services" className="text-foreground/80 hover:text-foreground transition-colors">
-            Services
-          </a>
+          <button 
+            onClick={() => navigate("/dogs")} 
+            className="text-foreground/80 hover:text-foreground transition-colors"
+          >
+            My Dogs
+          </button>
           <button 
             onClick={() => navigate("/walkers")} 
             className="text-foreground/80 hover:text-foreground transition-colors"
           >
             Find Walkers
           </button>
-          <a href="#about" className="text-foreground/80 hover:text-foreground transition-colors">
-            About
-          </a>
-          <a href="#contact" className="text-foreground/80 hover:text-foreground transition-colors">
-            Contact
-          </a>
+          <button 
+            onClick={() => navigate("/dashboard")} 
+            className="text-foreground/80 hover:text-foreground transition-colors"
+          >
+            Dashboard
+          </button>
         </nav>
 
         <div className="flex items-center gap-3">

@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -36,6 +37,7 @@ const Walkers = () => {
   const [sortBy, setSortBy] = useState("rating");
   const [experienceFilter, setExperienceFilter] = useState("all");
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchWalkers();
@@ -178,8 +180,12 @@ const Walkers = () => {
         )}
         
         <div className="flex gap-2">
-          <Button className="flex-1" size="sm">
-            View Profile
+          <Button 
+            className="flex-1" 
+            size="sm"
+            onClick={() => navigate(`/booking?walkerId=${walker.id}`)}
+          >
+            Book Now
           </Button>
           <Button variant="outline" size="sm">
             Message
