@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Heart, MapPin, Clock, Shield } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-dog-walker.jpg";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative min-h-screen flex items-center">
       {/* Background with overlay */}
@@ -30,7 +33,12 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
-            <Button variant="hero" size="xl" className="animate-bounce-in">
+            <Button 
+              variant="hero" 
+              size="xl" 
+              className="animate-bounce-in"
+              onClick={() => navigate("/walkers")}
+            >
               <Heart className="h-5 w-5" />
               Find a Walker
             </Button>

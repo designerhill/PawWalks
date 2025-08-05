@@ -28,9 +28,12 @@ const Header = () => {
           <a href="#services" className="text-foreground/80 hover:text-foreground transition-colors">
             Services
           </a>
-          <a href="#walkers" className="text-foreground/80 hover:text-foreground transition-colors">
+          <button 
+            onClick={() => navigate("/walkers")} 
+            className="text-foreground/80 hover:text-foreground transition-colors"
+          >
             Find Walkers
-          </a>
+          </button>
           <a href="#about" className="text-foreground/80 hover:text-foreground transition-colors">
             About
           </a>
