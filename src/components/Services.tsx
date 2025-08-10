@@ -2,8 +2,10 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Users, MapPin, Camera, Star, Shield } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Services = () => {
+  const navigate = useNavigate();
   const services = [
     {
       title: "30-Minute Walk",
@@ -74,10 +76,12 @@ const Services = () => {
                 ))}
               </ul>
 
-              <Button 
-                variant={service.popular ? "hero" : "default"} 
+              <Button
+                variant={service.popular ? "hero" : "default"}
                 className="w-full"
                 size="lg"
+                aria-label={`Book ${service.title}`}
+                onClick={() => navigate(`/booking?service=${encodeURIComponent(service.title)}`)}
               >
                 Book Now
               </Button>
