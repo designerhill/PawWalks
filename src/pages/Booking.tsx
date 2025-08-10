@@ -54,8 +54,11 @@ const Booking = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    if (user && walkerId) {
+    if (!user) return;
+    if (walkerId) {
       fetchWalkerAndDogs();
+    } else {
+      setLoading(false);
     }
   }, [user, walkerId]);
 

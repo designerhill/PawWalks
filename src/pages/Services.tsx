@@ -136,7 +136,7 @@ const Services = () => {
                   <Button 
                     className="w-full" 
                     variant={service.popular ? "default" : "outline"}
-                    onClick={() => navigate("/booking")}
+                    onClick={() => navigate("/walkers")}
                   >
                     Book Now
                   </Button>
