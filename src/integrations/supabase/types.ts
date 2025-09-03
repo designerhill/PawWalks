@@ -82,13 +82,6 @@ export type Database = {
             referencedRelation: "walker_profiles"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "bookings_walker_id_fkey"
-            columns: ["walker_id"]
-            isOneToOne: false
-            referencedRelation: "walker_profiles_public"
-            referencedColumns: ["id"]
-          },
         ]
       }
       dogs: {
@@ -185,13 +178,6 @@ export type Database = {
             referencedRelation: "walker_profiles"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "reviews_walker_id_fkey"
-            columns: ["walker_id"]
-            isOneToOne: false
-            referencedRelation: "walker_profiles_public"
-            referencedColumns: ["id"]
-          },
         ]
       }
       services: {
@@ -234,13 +220,6 @@ export type Database = {
             columns: ["walker_id"]
             isOneToOne: false
             referencedRelation: "walker_profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "services_walker_id_fkey"
-            columns: ["walker_id"]
-            isOneToOne: false
-            referencedRelation: "walker_profiles_public"
             referencedColumns: ["id"]
           },
         ]
@@ -298,57 +277,7 @@ export type Database = {
       }
     }
     Views: {
-      walker_profiles_public: {
-        Row: {
-          available_days: string[] | null
-          bio: string | null
-          created_at: string | null
-          display_name: string | null
-          experience_years: number | null
-          hourly_rate: number | null
-          id: string | null
-          is_active: boolean | null
-          is_verified: boolean | null
-          phone: string | null
-          profile_image_url: string | null
-          service_radius: number | null
-          updated_at: string | null
-          user_id: string | null
-        }
-        Insert: {
-          available_days?: string[] | null
-          bio?: string | null
-          created_at?: string | null
-          display_name?: string | null
-          experience_years?: number | null
-          hourly_rate?: number | null
-          id?: string | null
-          is_active?: boolean | null
-          is_verified?: boolean | null
-          phone?: never
-          profile_image_url?: string | null
-          service_radius?: number | null
-          updated_at?: string | null
-          user_id?: string | null
-        }
-        Update: {
-          available_days?: string[] | null
-          bio?: string | null
-          created_at?: string | null
-          display_name?: string | null
-          experience_years?: number | null
-          hourly_rate?: number | null
-          id?: string | null
-          is_active?: boolean | null
-          is_verified?: boolean | null
-          phone?: never
-          profile_image_url?: string | null
-          service_radius?: number | null
-          updated_at?: string | null
-          user_id?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
       user_has_booking_with_walker: {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Search, MapPin, Star, Clock, DollarSign } from "lucide-react";
+import { Search, MapPin, Star, Clock, DollarSign, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -20,6 +21,7 @@ interface WalkerProfile {
   service_radius: number;
   is_verified: boolean;
   profile_image_url?: string;
+  phone?: string;
   services?: Array<{
     id: string;
     name: string;
@@ -38,6 +40,7 @@ const Walkers = () => {
   const [experienceFilter, setExperienceFilter] = useState("all");
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   useEffect(() => {
     fetchWalkers();
@@ -175,6 +178,22 @@ const Walkers = () => {
                   +{walker.services.length - 3} more
                 </Badge>
               )}
+            </div>
+          </div>
+        )}
+        
+        {/* Show phone number only if user is authenticated and has booking relationship */}
+        {user && walker.phone && (
+          <div className="mb-4 p-3 bg-muted/50 rounded-lg">
+            <div className="flex items-center gap-2 text-sm">
+              <Phone className="w-4 h-4 text-primary" />
+              <span className="font-medium">Contact:</span>
+              <a 
+                href={`tel:${walker.phone}`}
+                className="text-primary hover:underline"
+              >
+                {walker.phone}
+              </a>
             </div>
           </div>
         )}
