@@ -1,11 +1,27 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import WalkerRegistrationForm from "@/components/WalkerRegistrationForm";
+import { useAuth } from "@/hooks/useAuth";
 import { DollarSign, Heart, Calendar, Shield } from "lucide-react";
 
 const BecomeWalker = () => {
+  const [showRegistrationForm, setShowRegistrationForm] = useState(false);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleApplyClick = () => {
+    if (!user) {
+      navigate("/auth");
+      return;
+    }
+    setShowRegistrationForm(true);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -121,8 +137,8 @@ const BecomeWalker = () => {
           </Card>
 
           <div className="text-center">
-            <Button size="lg" className="px-8">
-              Apply Now
+            <Button size="lg" className="px-8" onClick={handleApplyClick}>
+              {user ? "Apply Now" : "Sign In to Apply"}
             </Button>
             <p className="mt-4 text-sm text-muted-foreground">
               Application takes about 10 minutes. We'll get back to you within 24 hours.
@@ -131,6 +147,11 @@ const BecomeWalker = () => {
         </div>
       </main>
       <Footer />
+      
+      <WalkerRegistrationForm 
+        isOpen={showRegistrationForm} 
+        onClose={() => setShowRegistrationForm(false)} 
+      />
     </div>
   );
 };
