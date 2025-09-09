@@ -10,6 +10,7 @@ import Walkers from "./pages/Walkers";
 import Dogs from "./pages/Dogs";
 import Booking from "./pages/Booking";
 import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
 import AboutUs from "./pages/AboutUs";
 import BecomeWalker from "./pages/BecomeWalker";
 import SafetyStandards from "./pages/SafetyStandards";
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="/dogs" element={<Dogs />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/become-walker" element={<BecomeWalker />} />
             <Route path="/safety" element={<SafetyStandards />} />

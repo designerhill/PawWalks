@@ -54,9 +54,10 @@ const Header = () => {
         <div className="flex items-center gap-3">
           {user ? (
             <>
-              <span className="hidden md:inline text-sm text-muted-foreground">
-                {user.email}
-              </span>
+              <Button variant="ghost" size="sm" onClick={() => navigate("/profile")} className="hidden md:flex">
+                <User className="h-4 w-4 mr-2" />
+                Profile
+              </Button>
               <Button variant="ghost" size="sm" onClick={handleAuthAction} className="hidden md:flex">
                 <LogOut className="h-4 w-4" />
                 Sign Out
