@@ -209,41 +209,47 @@ const Profile = () => {
         <div className="grid gap-6 md:grid-cols-3">
           {/* Profile Card */}
           <div className="md:col-span-1">
-            <Card>
-              <CardHeader className="text-center">
-                <div className="flex justify-center mb-4">
-                  <Avatar className="w-24 h-24">
-                    <AvatarImage src={profile?.avatar_url || walkerProfile?.profile_image_url} />
-                    <AvatarFallback className="text-2xl">{initials}</AvatarFallback>
-                  </Avatar>
+            <Card className="shadow-card bg-gradient-card border-0">
+              <CardHeader className="text-center pb-6">
+                <div className="flex justify-center mb-6">
+                  <div className="relative">
+                    <Avatar className="w-24 h-24 border-4 border-white shadow-soft">
+                      <AvatarImage src={profile?.avatar_url || walkerProfile?.profile_image_url} />
+                      <AvatarFallback className="text-2xl bg-gradient-primary text-white">{initials}</AvatarFallback>
+                    </Avatar>
+                    <Button size="icon" variant="secondary" className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full shadow-soft">
+                      <Camera className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </div>
-                <CardTitle>{displayName || user.email}</CardTitle>
-                <div className="flex justify-center gap-2">
-                  <Badge variant={profile?.user_type === 'walker' ? 'default' : 'secondary'}>
+                <CardTitle className="text-xl">{displayName || user.email}</CardTitle>
+                <div className="flex justify-center gap-2 mt-3">
+                  <Badge variant={profile?.user_type === 'walker' ? 'default' : 'secondary'} className="shadow-sm">
                     {profile?.user_type === 'walker' ? 'Walker' : 'Dog Owner'}
                   </Badge>
                   {walkerProfile?.is_verified && (
-                    <Badge variant="outline" className="text-primary">
+                    <Badge variant="outline" className="text-primary border-primary bg-primary/10">
                       <Shield className="w-3 h-3 mr-1" />
                       Verified
                     </Badge>
                   )}
                 </div>
               </CardHeader>
-              <CardContent className="space-y-3">
+              <CardContent className="space-y-4 pt-0">{/* // ... keep existing code (profile content) */}
                 {profile?.user_type === 'walker' && walkerProfile && (
                   <>
-                    <div className="flex items-center gap-2 text-sm">
-                      <Star className="w-4 h-4 text-yellow-500" />
-                      <span>{walkerProfile.experience_years || 0} years experience</span>
+                    <div className="flex items-center gap-2 text-sm bg-secondary/10 p-3 rounded-lg">
+                      <Star className="w-4 h-4 text-secondary" />
+                      <span className="font-medium">{walkerProfile.experience_years || 0} years experience</span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <MapPin className="w-4 h-4 text-muted-foreground" />
+                    <div className="flex items-center gap-2 text-sm bg-accent/10 p-3 rounded-lg">
+                      <MapPin className="w-4 h-4 text-accent-foreground" />
                       <span>{walkerProfile.service_radius || 5} km service radius</span>
                     </div>
                     {walkerProfile.hourly_rate && (
-                      <div className="flex items-center gap-2 text-sm font-medium">
-                        <span>${walkerProfile.hourly_rate}/hour</span>
+                      <div className="bg-gradient-primary text-white p-3 rounded-lg text-center">
+                        <div className="text-2xl font-bold">${walkerProfile.hourly_rate}</div>
+                        <div className="text-sm opacity-90">per hour</div>
                       </div>
                     )}
                   </>
@@ -265,21 +271,25 @@ const Profile = () => {
           {/* Profile Form */}
           <div className="md:col-span-2">
             <Tabs defaultValue="general" className="w-full">
-              <TabsList className="mb-6">
-                <TabsTrigger value="general">General</TabsTrigger>
+              <TabsList className="mb-6 bg-muted/50">
+                <TabsTrigger value="general" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">General</TabsTrigger>
                 {profile?.user_type === 'walker' && (
-                  <TabsTrigger value="walker">Walker Settings</TabsTrigger>
+                  <TabsTrigger value="walker" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">Walker Settings</TabsTrigger>
                 )}
               </TabsList>
               
               <TabsContent value="general">
-                <Card>
-                  <CardHeader>
+                <Card className="shadow-card border-0">
+                  <CardHeader className="bg-gradient-card">
                     <div className="flex justify-between items-center">
-                      <CardTitle>General Information</CardTitle>
+                      <CardTitle className="flex items-center gap-2">
+                        <User className="w-5 h-5 text-primary" />
+                        General Information
+                      </CardTitle>
                       <Button
                         variant={isEditing ? "outline" : "default"}
                         onClick={() => setIsEditing(!isEditing)}
+                        className={isEditing ? "" : "bg-gradient-primary hover:opacity-90"}
                       >
                         {isEditing ? "Cancel" : "Edit Profile"}
                       </Button>
@@ -332,8 +342,8 @@ const Profile = () => {
                     </div>
                     
                     {isEditing && (
-                      <div className="flex gap-2 pt-4">
-                        <Button onClick={handleSaveProfile} disabled={saving}>
+                      <div className="flex gap-2 pt-6 border-t">
+                        <Button onClick={handleSaveProfile} disabled={saving} className="bg-gradient-primary hover:opacity-90">
                           {saving ? "Saving..." : "Save Changes"}
                         </Button>
                         <Button variant="outline" onClick={() => setIsEditing(false)}>
@@ -347,9 +357,12 @@ const Profile = () => {
               
               {profile?.user_type === 'walker' && (
                 <TabsContent value="walker">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Walker Settings</CardTitle>
+                  <Card className="shadow-card border-0">
+                    <CardHeader className="bg-gradient-card">
+                      <CardTitle className="flex items-center gap-2">
+                        <Shield className="w-5 h-5 text-primary" />
+                        Walker Settings
+                      </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="grid gap-4 md:grid-cols-2">

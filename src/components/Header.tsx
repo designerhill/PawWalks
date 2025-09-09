@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Heart, User, Menu, LogOut } from "lucide-react";
+import { Heart, User, Menu, LogOut, Settings, BarChart3 } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import appIcon from "@/assets/app-icon.jpg";
@@ -14,6 +16,13 @@ const Header = () => {
     } else {
       navigate("/auth");
     }
+  };
+
+  const getUserInitials = () => {
+    if (user?.email) {
+      return user.email.charAt(0).toUpperCase();
+    }
+    return 'U';
   };
 
   return (
@@ -43,33 +52,54 @@ const Header = () => {
           >
             Become a Walker
           </button>
-          <button 
-            onClick={() => navigate("/dashboard")} 
-            className="text-foreground/80 hover:text-foreground transition-colors"
-          >
-            Dashboard
-          </button>
         </nav>
 
         <div className="flex items-center gap-3">
           {user ? (
             <>
-              <Button variant="ghost" size="sm" onClick={() => navigate("/profile")} className="hidden md:flex">
-                <User className="h-4 w-4 mr-2" />
-                Profile
-              </Button>
-              <Button variant="ghost" size="sm" onClick={handleAuthAction} className="hidden md:flex">
-                <LogOut className="h-4 w-4" />
-                Sign Out
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src="/placeholder-user.jpg" alt="Profile" />
+                      <AvatarFallback className="text-xs">{getUserInitials()}</AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56" align="end" forceMount>
+                  <DropdownMenuLabel className="font-normal">
+                    <div className="flex flex-col space-y-1">
+                      <p className="text-sm font-medium leading-none">My Account</p>
+                      <p className="text-xs leading-none text-muted-foreground">
+                        {user.email}
+                      </p>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => navigate("/profile")}>
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Profile</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate("/dashboard")}>
+                    <BarChart3 className="mr-2 h-4 w-4" />
+                    <span>Dashboard</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleAuthAction}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Sign out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </>
           ) : (
             <Button variant="ghost" size="sm" onClick={handleAuthAction} className="hidden md:flex">
-              <User className="h-4 w-4" />
+              <User className="h-4 w-4 mr-2" />
               Sign In
             </Button>
           )}
-          <Button variant="cta" size="sm">
+          <Button variant="cta" size="sm" onClick={() => navigate("/walkers")}>
+            <Heart className="w-4 h-4 mr-2" />
             Get Started
           </Button>
           <Button variant="ghost" size="icon" className="md:hidden">
