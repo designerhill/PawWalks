@@ -262,6 +262,9 @@ export type Database = {
       }
       walker_profiles: {
         Row: {
+          approval_status: string | null
+          approved_at: string | null
+          approved_by: string | null
           available_days: string[] | null
           bio: string | null
           created_at: string
@@ -273,11 +276,15 @@ export type Database = {
           is_verified: boolean | null
           phone: string | null
           profile_image_url: string | null
+          rejection_reason: string | null
           service_radius: number | null
           updated_at: string
           user_id: string
         }
         Insert: {
+          approval_status?: string | null
+          approved_at?: string | null
+          approved_by?: string | null
           available_days?: string[] | null
           bio?: string | null
           created_at?: string
@@ -289,11 +296,15 @@ export type Database = {
           is_verified?: boolean | null
           phone?: string | null
           profile_image_url?: string | null
+          rejection_reason?: string | null
           service_radius?: number | null
           updated_at?: string
           user_id: string
         }
         Update: {
+          approval_status?: string | null
+          approved_at?: string | null
+          approved_by?: string | null
           available_days?: string[] | null
           bio?: string | null
           created_at?: string
@@ -305,6 +316,7 @@ export type Database = {
           is_verified?: boolean | null
           phone?: string | null
           profile_image_url?: string | null
+          rejection_reason?: string | null
           service_radius?: number | null
           updated_at?: string
           user_id?: string
@@ -316,6 +328,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      is_admin: {
+        Args: { user_id?: string }
+        Returns: boolean
+      }
       user_has_booking_with_walker: {
         Args: { walker_profile_id: string }
         Returns: boolean

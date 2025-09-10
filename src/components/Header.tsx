@@ -1,14 +1,31 @@
 import { Button } from "@/components/ui/button";
-import { Heart, User, Menu, LogOut, Settings, BarChart3 } from "lucide-react";
+import { Heart, User, Menu, LogOut, Settings, BarChart3, Shield } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import appIcon from "@/assets/app-icon.jpg";
 
 const Header = () => {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
+  const [userProfile, setUserProfile] = useState<any>(null);
+
+  useEffect(() => {
+    if (user) {
+      const fetchProfile = async () => {
+        const { data } = await supabase
+          .from('profiles')
+          .select('user_type')
+          .eq('user_id', user.id)
+          .single();
+        setUserProfile(data);
+      };
+      fetchProfile();
+    }
+  }, [user]);
 
   const handleAuthAction = () => {
     if (user) {
@@ -84,6 +101,12 @@ const Header = () => {
                     <BarChart3 className="mr-2 h-4 w-4" />
                     <span>Dashboard</span>
                   </DropdownMenuItem>
+                  {userProfile?.user_type === 'admin' && (
+                    <DropdownMenuItem onClick={() => navigate("/admin")}>
+                      <Shield className="mr-2 h-4 w-4" />
+                      <span>Admin Dashboard</span>
+                    </DropdownMenuItem>
+                  )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleAuthAction}>
                     <LogOut className="mr-2 h-4 w-4" />

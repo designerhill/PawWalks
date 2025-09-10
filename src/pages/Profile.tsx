@@ -18,7 +18,7 @@ import Footer from "@/components/Footer";
 interface UserProfile {
   id: string;
   user_id: string;
-  user_type: 'user' | 'walker';
+  user_type: 'user' | 'walker' | 'admin';
   display_name?: string;
   phone?: string;
   avatar_url?: string;
