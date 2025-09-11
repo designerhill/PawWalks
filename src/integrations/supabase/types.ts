@@ -332,6 +332,10 @@ export type Database = {
         Args: { user_id?: string }
         Returns: boolean
       }
+      promote_user_to_admin: {
+        Args: { user_email: string }
+        Returns: undefined
+      }
       user_has_booking_with_walker: {
         Args: { walker_profile_id: string }
         Returns: boolean
