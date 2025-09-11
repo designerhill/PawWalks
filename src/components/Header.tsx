@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Heart, User, Menu, LogOut, Settings, BarChart3, Shield } from "lucide-react";
+import { Heart, User, Menu, LogOut, Settings, BarChart3, Shield, CreditCard } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/hooks/useAuth";
@@ -100,6 +100,10 @@ const Header = () => {
                   <DropdownMenuItem onClick={() => navigate("/dashboard")}>
                     <BarChart3 className="mr-2 h-4 w-4" />
                     <span>Dashboard</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate("/subscription")}>
+                    <CreditCard className="mr-2 h-4 w-4" />
+                    <span>Subscription</span>
                   </DropdownMenuItem>
                   {userProfile?.user_type === 'admin' && (
                     <DropdownMenuItem onClick={() => navigate("/admin")}>
