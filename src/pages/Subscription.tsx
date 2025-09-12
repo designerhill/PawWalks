@@ -4,6 +4,8 @@ import { SubscriptionPlans } from "@/components/SubscriptionPlans";
 import { SubscriptionStatus } from "@/components/SubscriptionStatus";
 import { useSubscription } from "@/hooks/useSubscription";
 import { useToast } from "@/hooks/use-toast";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function Subscription() {
   const [searchParams] = useSearchParams();
@@ -30,8 +32,11 @@ export default function Subscription() {
   }, [searchParams, refreshSubscription, toast]);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="max-w-4xl mx-auto space-y-8">
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1">
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto space-y-8">
         {/* Header */}
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold">Choose Your Plan</h1>
@@ -79,7 +84,10 @@ export default function Subscription() {
             </div>
           </div>
         </div>
-      </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 }
