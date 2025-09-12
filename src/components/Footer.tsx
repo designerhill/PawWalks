@@ -25,11 +25,11 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Services</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/80">
-              <li><a href="#" className="hover:text-accent transition-colors">30-Minute Walks</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">60-Minute Adventures</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Group Walks</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Pet Sitting</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Emergency Care</a></li>
+              <li><a href="/services" className="hover:text-accent transition-colors">30-Minute Walks</a></li>
+              <li><a href="/services" className="hover:text-accent transition-colors">60-Minute Adventures</a></li>
+              <li><a href="/services" className="hover:text-accent transition-colors">Group Walks</a></li>
+              <li><a href="/services" className="hover:text-accent transition-colors">Pet Sitting</a></li>
+              <li><a href="/services" className="hover:text-accent transition-colors">Emergency Care</a></li>
             </ul>
           </div>
 
@@ -37,11 +37,11 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/80">
-              <li><a href="#" className="hover:text-accent transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Become a Walker</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Safety Standards</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Insurance</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Careers</a></li>
+              <li><a href="/about" className="hover:text-accent transition-colors">About Us</a></li>
+              <li><a href="/become-walker" className="hover:text-accent transition-colors">Become a Walker</a></li>
+              <li><a href="/safety" className="hover:text-accent transition-colors">Safety Standards</a></li>
+              <li><a href="/insurance" className="hover:text-accent transition-colors">Insurance</a></li>
+              <li><a href="/careers" className="hover:text-accent transition-colors">Careers</a></li>
             </ul>
           </div>
 
@@ -66,7 +66,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-primary-foreground/20 mt-12 pt-8 text-center text-sm text-primary-foreground/60">
-          <p>&copy; 2024 PawWalks. All rights reserved. • Privacy Policy • Terms of Service</p>
+          <p>&copy; 2024 PawWalks. All rights reserved. • <a href="/privacy" className="hover:text-accent transition-colors">Privacy Policy</a> • <a href="/terms" className="hover:text-accent transition-colors">Terms of Service</a></p>
         </div>
       </div>
     </footer>
