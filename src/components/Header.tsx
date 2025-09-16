@@ -51,24 +51,61 @@ const Header = () => {
         </div>
         
         <nav className="hidden md:flex items-center gap-6">
-          <button 
-            onClick={() => navigate("/dogs")} 
-            className="text-foreground/80 hover:text-foreground transition-colors"
-          >
-            My Dogs
-          </button>
-          <button 
-            onClick={() => navigate("/walkers")} 
-            className="text-foreground/80 hover:text-foreground transition-colors"
-          >
-            Find Walkers
-          </button>
-          <button 
-            onClick={() => navigate("/become-walker")} 
-            className="text-foreground/80 hover:text-foreground transition-colors"
-          >
-            Become a Walker
-          </button>
+          {user ? (
+            <>
+              <button 
+                onClick={() => navigate("/dogs")} 
+                className="text-foreground/80 hover:text-foreground transition-colors"
+              >
+                My Dogs
+              </button>
+              <button 
+                onClick={() => navigate("/walkers")} 
+                className="text-foreground/80 hover:text-foreground transition-colors"
+              >
+                Find Walkers
+              </button>
+              <button 
+                onClick={() => navigate("/become-walker")} 
+                className="text-foreground/80 hover:text-foreground transition-colors"
+              >
+                Become a Walker
+              </button>
+            </>
+          ) : (
+            <>
+              <button 
+                onClick={() => navigate("/about")} 
+                className="text-foreground/80 hover:text-foreground transition-colors"
+              >
+                About Us
+              </button>
+              <button 
+                onClick={() => navigate("/services")} 
+                className="text-foreground/80 hover:text-foreground transition-colors"
+              >
+                Services
+              </button>
+              <button 
+                onClick={() => navigate("/become-walker")} 
+                className="text-foreground/80 hover:text-foreground transition-colors"
+              >
+                Become a Walker
+              </button>
+              <button 
+                onClick={() => navigate("/safety")} 
+                className="text-foreground/80 hover:text-foreground transition-colors"
+              >
+                Safety Standards
+              </button>
+              <button 
+                onClick={() => navigate("/insurance")} 
+                className="text-foreground/80 hover:text-foreground transition-colors"
+              >
+                Insurance
+              </button>
+            </>
+          )}
         </nav>
 
         <div className="flex items-center gap-3">
