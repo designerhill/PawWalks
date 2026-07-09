@@ -19,10 +19,12 @@ export type Database = {
           created_at: string
           dog_id: string
           dog_owner_id: string
+          end_time: string | null
           id: string
           notes: string | null
           scheduled_date: string
           service_id: string
+          special_instructions: string | null
           start_time: string
           status: string
           total_price: number | null
@@ -33,10 +35,12 @@ export type Database = {
           created_at?: string
           dog_id: string
           dog_owner_id: string
+          end_time?: string | null
           id?: string
           notes?: string | null
           scheduled_date: string
           service_id: string
+          special_instructions?: string | null
           start_time: string
           status?: string
           total_price?: number | null
@@ -47,10 +51,12 @@ export type Database = {
           created_at?: string
           dog_id?: string
           dog_owner_id?: string
+          end_time?: string | null
           id?: string
           notes?: string | null
           scheduled_date?: string
           service_id?: string
+          special_instructions?: string | null
           start_time?: string
           status?: string
           total_price?: number | null
@@ -134,6 +140,7 @@ export type Database = {
       }
       profiles: {
         Row: {
+          bio: string | null
           created_at: string
           display_name: string | null
           id: string
@@ -143,6 +150,7 @@ export type Database = {
           user_type: string
         }
         Insert: {
+          bio?: string | null
           created_at?: string
           display_name?: string | null
           id?: string
@@ -152,6 +160,7 @@ export type Database = {
           user_type?: string
         }
         Update: {
+          bio?: string | null
           created_at?: string
           display_name?: string | null
           id?: string
