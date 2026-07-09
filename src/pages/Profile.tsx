@@ -76,7 +76,7 @@ const Profile = () => {
 
       if (profileError && profileError.code !== 'PGRST116') throw profileError;
       
-      setProfile(profileData);
+      setProfile(profileData as UserProfile);
       setDisplayName(profileData?.display_name || "");
       setPhone(profileData?.phone || "");
       setBio(profileData?.bio || "");
